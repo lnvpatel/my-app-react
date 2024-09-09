@@ -3,8 +3,6 @@ pipeline {
     tools {
         nodejs 'NodeJs'
     }
-    
-
     environment {
         CODEDEPLOY_APP_NAME = 'Oriserve_web'
         CODEDEPLOY_DEPLOY_GROUP = 'oriserve_deployment_group'
@@ -105,5 +103,5 @@ pipeline {
         failure {
             echo 'Deployment failed. Check logs for details.'
         }
-    }
+    
 }
