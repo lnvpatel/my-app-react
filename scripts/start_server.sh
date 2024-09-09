@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Start the application
-echo "Starting application..."
+# Navigate to the directory where your build files are located
+cd /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_ID/deployment-archive
 
-# Navigate to the directory where the built React application is located
-cd /var/www/my-app || { echo "Directory /var/www/my-app does not exist. Exiting."; exit 1; }
+# Start the server in the background
+# Start the server and bind it to all network interfaces
+serve -p 8080 --listen 0.0.0.0 . &
 
-# Start the application using serve
-serve -p 8080 .
+# Optional: Log output
+echo "Application started successfully!" >> /tmp/start_server.log
