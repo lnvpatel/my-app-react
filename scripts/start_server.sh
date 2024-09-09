@@ -7,4 +7,4 @@ echo "Starting application..."
 cd /var/www/my-app || { echo "Directory /var/www/my-app does not exist. Exiting."; exit 1; }
 
 # Start the application using serve
-serve -s build -l 8080
+serve -p 8080 .
