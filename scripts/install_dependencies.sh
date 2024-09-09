@@ -4,6 +4,7 @@ yum update -y
 
 echo "Installing Node.js and npm..."
 yum install -y nodejs npm
+npm install -g yarn
 
 echo "Creating application directory..."
 mkdir -p /var/www/my-app

@@ -3,6 +3,7 @@ pipeline {
     tools {
         nodejs 'NodeJs'
     }
+    
 
     environment {
         CODEDEPLOY_APP_NAME = 'Oriserve_web'
@@ -13,6 +14,15 @@ pipeline {
         LOCAL_FILE_PATH = "${WORKSPACE}/build.zip" // Path to the local build artifact
         S3_FILE_PATH = 'builds/build.zip' // Path in S3 bucket
     }
+     stages {
+        stage('Install Yarn') {
+            steps {
+                script {
+                    sh 'npm install -g yarn'
+                }
+            }
+        }
+
 
     stages {
         stage('Clean Up') {
