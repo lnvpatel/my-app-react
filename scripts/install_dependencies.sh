@@ -14,7 +14,7 @@ cd /var/www/my-app || { echo "Directory /var/www/my-app does not exist. Exiting.
 
 # Clean npm cache and install dependencies
 echo "Cleaning npm cache and installing Node.js dependencies..."
-npm cache clean --force
+yarn cache clean
 rm -rf node_modules
 yarn install
 
