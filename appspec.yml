@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: /    # This reflects the extracted contents from builds/build.zip
+  - source: /    # This reflects the extracted contents from project.zip
     destination: /var/www/my-app # Destination directory on the instance (you can modify this)
 
 permissions:
