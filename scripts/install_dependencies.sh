@@ -1,24 +1,42 @@
-# Install necessary system dependencies
-echo "Updating system..."
-yum update -y
+# Install Node.js and npm if not already installed
+if ! node -v > /dev/null 2>&1; then
+    echo "Node.js not found. Installing Node.js..."
+    sudo yum install -y nodejs
+fi
 
-echo "Installing Node.js and npm..."
-yum install -y nodejs npm
-npm install -g yarn
-npm install -g serve
+
+# Install Nginx if it's not already installed
+if ! nginx -v > /dev/null 2>&1; then
+    echo "Nginx not found. Installing Nginx..."
+    sudo amazon-linux-extras install nginx1.12 -y
+    sudo systemctl enable nginx
+else
+    echo "Nginx is already installed."
+fi
+
+# Install Yarn globally if not already installed
+if ! yarn -v > /dev/null 2>&1; then
+    echo "Yarn not found. Installing Yarn..."
+    npm install -g yarn
+fi
 
 echo "Creating application directory..."
 mkdir -p /var/www/my-app
 
-# Navigate to the project directory (adjust as needed)
-cd /var/www/my-app || { echo "Directory /var/www/my-app does not exist. Exiting."; exit 1; }
+# Navigate to the application directory (assuming this script is run from the correct location)
+echo "Navigating to the application directory..."
+cd /var/www/my-app
 
-
-# Clean npm cache and install dependencies
-echo "Cleaning npm cache and installing Node.js dependencies..."
-yarn cache clean
+# Clean existing node_modules, yarn.lock, and build if they exist
+echo "Cleaning old dependencies and build..."
 rm -rf node_modules
+rm -f yarn.lock
+rm -rf build
+
+# Install project dependencies
+echo "Installing project dependencies..."
 yarn install
 
-# Print a success message
-echo "Dependencies installed successfully."
+# Build the application
+echo "Building the React application..."
+yarn build

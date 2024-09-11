@@ -1,15 +1,18 @@
 #!/bin/bash
 
-# Navigate to the directory where your build files are located
-cd /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_ID/deployment-archive
+# Start Nginx service
+echo "Starting Nginx..."
 
-# Start the server in the background
-# Start the server and bind it to all network interfaces
-#!/bin/bash
-# Start the server using serve and run it in the background
+# Ensure that Nginx is not already running, stop it if needed
+sudo systemctl stop nginx
 
-serve -s . -p 8080 >> /tmp/start_server.log 2>&1 &
+# Start Nginx
+sudo systemctl start nginx
 
-
-# Optional: Log output
-echo "Application started successfully!" >> /tmp/start_server.log
+# Check if Nginx started successfully
+if systemctl is-active --quiet nginx; then
+    echo "Nginx started successfully!"
+else
+    echo "Failed to start Nginx."
+    exit 1
+fi
