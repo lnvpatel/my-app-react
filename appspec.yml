@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: /    # This reflects the extracted contents from builds/build.zip
+  - source: /    # This reflects the extracted contents from project.zip
     destination: /var/www/my-app # Destination directory on the instance (you can modify this)
 
 permissions:
@@ -24,6 +24,14 @@ hooks:
 
   AfterInstall:
     - location: scripts/change_permissions.sh    # Script to change permissions
+      timeout: 300
+      runas: root
+
+    - location: scripts/copy_nginx_conf.sh   # Script to copy custom nginx.conf to /etc/nginx/
+      timeout: 300
+      runas: root
+
+    - location: scripts/restart_nginx.sh   # Restart or reload Nginx after files are installed
       timeout: 300
       runas: root
 
