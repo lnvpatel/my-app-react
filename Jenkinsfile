@@ -26,7 +26,7 @@ pipeline {
                 script {
                     sh 'yarn cache clean'
                     sh 'rm -rf node_modules'
-                    sh 'rm -f yarn.lock'
+                    sh 'rm -rf yarn.lock'
                     sh 'rm -rf build'
                 }
             }
