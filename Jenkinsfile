@@ -10,7 +10,7 @@ pipeline {
         AWS_REGION = 'ap-south-1'
         S3_BUCKET_NAME = 'oriservereact'
         LOCAL_FILE_PATH = "${WORKSPACE}/build.zip" // Path to the local build artifact
-        S3_FILE_PATH = 'project.zip' // Path in S3 bucket
+        S3_FILE_PATH = 'build.zip' // Path in S3 bucket
     }
     stages {
         stage('Install Yarn') {
@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     // Create the zip file of the build directory
-                    sh 'zip -r project.zip Jenkinsfile appspec.yml package.json scripts build'
+                    sh 'zip -r project.zip build'
                 }
             }
         }
