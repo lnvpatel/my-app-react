@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# Copy the custom nginx.conf to the appropriate location
-echo "Copying custom Nginx configuration..."
-cp -r /var/www/my-app/nginx /etc
+# Copy Nginx config to the sites-available directory
+cp /var/www/my-app/nginx/my-app.conf /etc/nginx/sites-available/my-app.conf
 
-if [ $? -eq 0 ]; then
-    echo "Nginx configuration copied successfully."
-else
-    echo "Failed to copy Nginx configuration."
-    exit 1
+# Remove any existing symlink
+if [ -L /etc/nginx/sites-enabled/my-app.conf ]; then
+    rm /etc/nginx/sites-enabled/my-app.conf
 fi
+
+# Create a new symlink in sites-enabled
+ln -s /etc/nginx/sites-available/my-app.conf /etc/nginx/sites-enabled/my-app.conf
+
+echo "Nginx configuration copied and symlink created"
