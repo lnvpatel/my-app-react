@@ -1,43 +1,49 @@
 #!/bin/bash
-# Ensure the /var/www/my-app directory exists
-if [ ! -d "/var/www/my-app" ]; then
-    mkdir -p /var/www/my-app
-    echo "Directory /var/www/my-app created"
+
+# Create the deployment directory if it doesn't exist
+if [ ! -d /var/www/my-app ]; then
+  mkdir -p /var/www/my-app
+  echo "Directory /var/www/my-app created"
+fi
+
+# Check if Nginx is installed
+if ! nginx -v 2>/dev/null; then
+  echo "Nginx not found. Installing Nginx..."
+  
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [[ "$ID" == "amzn" && "$VERSION_ID" == "2" ]]; then
+      sudo amazon-linux-extras install nginx1 -y
+    else
+      sudo yum install nginx -y
+    fi
+  else
+    echo "OS version not supported for automatic Nginx installation."
+  fi
+
+  sudo systemctl enable nginx
+  sudo systemctl start nginx
 else
-    echo "Directory /var/www/my-app already exists"
+  echo "Nginx is already installed."
 fi
 
-# Install Node.js and npm if not already installed
-if ! node -v > /dev/null 2>&1; then
-    echo "Node.js not found. Installing Node.js..."
-    sudo yum install -y nodejs
+# Install Yarn if not found
+if ! yarn -v 2>/dev/null; then
+  echo "Yarn not found. Installing Yarn..."
+  npm install -g yarn
 fi
 
-# Install Nginx if it's not already installed
-if ! nginx -v > /dev/null 2>&1; then
-    echo "Nginx not found. Installing Nginx..."
-    sudo amazon-linux-extras install nginx1.12 -y
-    sudo systemctl enable nginx
-else
-    echo "Nginx is already installed."
-fi
-
-# Install Yarn globally if not already installed
-if ! yarn -v > /dev/null 2>&1; then
-    echo "Yarn not found. Installing Yarn..."
-    npm install -g yarn
-fi
-
-# Clean existing node_modules, yarn.lock, and build if they exist
+# Clean old dependencies and build
 echo "Cleaning old dependencies and build..."
-rm -rf node_modules
-rm -f yarn.lock
-rm -rf build
+rm -rf /var/www/my-app/node_modules /var/www/my-app/build
 
-# Install project dependencies
+# Change to project directory
+cd /var/www/my-app
+
+# Install dependencies
 echo "Installing project dependencies..."
 yarn install
 
-# Build the application
+# Build the React application
 echo "Building the React application..."
-yarn build
+yarn run build
