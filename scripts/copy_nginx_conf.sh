@@ -12,3 +12,4 @@ fi
 ln -s /etc/nginx/sites-available/my-app.conf /etc/nginx/sites-enabled/my-app.conf
 
 echo "Nginx configuration copied and symlink created"
+#line added
