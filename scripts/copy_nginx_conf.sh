@@ -2,7 +2,7 @@
 
 # Copy the custom nginx.conf to the appropriate location
 echo "Copying custom Nginx configuration..."
-cp /var/www/my-app/nginx/nginx.conf /etc/nginx/nginx.conf
+cp -r /var/www/my-app/nginx /etc
 
 if [ $? -eq 0 ]; then
     echo "Nginx configuration copied successfully."
