@@ -1,0 +1,13 @@
+# /my-app/nginx/mime.types
+
+types {
+    text/html  html htm shtml;
+    text/css   css;
+    text/xml   xml;
+    image/gif  gif;
+    image/jpeg jpeg jpg;
+    image/png  png;    # PNG type
+    image/x-icon  ico; # ICO type
+    application/javascript js;
+    # Add other MIME types as necessary...
+}
