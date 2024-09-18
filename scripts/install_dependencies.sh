@@ -47,4 +47,4 @@ yarn install
 # Build the React application
 echo "Building the React application..."
 yarn run build
-#line added
+
