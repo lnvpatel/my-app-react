@@ -1,12 +1,17 @@
-echo "Creating application directory..."
-mkdir -p /var/www/my-app
+#!/bin/bash
+# Ensure the /var/www/my-app directory exists
+if [ ! -d "/var/www/my-app" ]; then
+    mkdir -p /var/www/my-app
+    echo "Directory /var/www/my-app created"
+else
+    echo "Directory /var/www/my-app already exists"
+fi
 
 # Install Node.js and npm if not already installed
 if ! node -v > /dev/null 2>&1; then
     echo "Node.js not found. Installing Node.js..."
     sudo yum install -y nodejs
 fi
-
 
 # Install Nginx if it's not already installed
 if ! nginx -v > /dev/null 2>&1; then
