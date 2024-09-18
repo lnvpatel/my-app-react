@@ -1,3 +1,6 @@
+echo "Creating application directory..."
+mkdir -p /var/www/my-app
+
 # Install Node.js and npm if not already installed
 if ! node -v > /dev/null 2>&1; then
     echo "Node.js not found. Installing Node.js..."
@@ -19,13 +22,6 @@ if ! yarn -v > /dev/null 2>&1; then
     echo "Yarn not found. Installing Yarn..."
     npm install -g yarn
 fi
-
-echo "Creating application directory..."
-mkdir -p /var/www/my-app
-
-# Navigate to the application directory (assuming this script is run from the correct location)
-echo "Navigating to the application directory..."
-cd /var/www/my-app
 
 # Clean existing node_modules, yarn.lock, and build if they exist
 echo "Cleaning old dependencies and build..."
