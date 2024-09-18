@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Copy Nginx config to the sites-available directory
-cp /var/www/my-app/nginx/my-app.conf /etc/nginx/sites-available/my-app.conf
+cp /var/www/my-app/nginx /etc
 
 # Remove any existing symlink
 if [ -L /etc/nginx/sites-enabled/my-app.conf ]; then
