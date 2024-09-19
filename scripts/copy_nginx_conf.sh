@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Copy Nginx config to the sites-available directory
-rm -rf /etc/nginx
 cp -r /var/www/my-app/nginx /etc
 
 # Remove any existing symlink
