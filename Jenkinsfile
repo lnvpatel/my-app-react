@@ -24,7 +24,7 @@ pipeline {
         stage('Clean Up') {
             steps {
                 script {
-                    sh 'rm -rf my-app-react"
+                    sh 'rm -rf my-app-react'
                 }
             }
         }
