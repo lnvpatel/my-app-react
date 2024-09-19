@@ -56,7 +56,6 @@ pipeline {
                 script {
                     // Create the zip file of the build directory
                     sh'''
-                         rm ../build.zip
                          cd build && zip -r ../build.zip ./*
                       '''
                 }
