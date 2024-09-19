@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "REACT_APP_ENV=production react-scripts build",
     "postbuild": "cp package.json appspec.yml yarn.lock -r scripts/ nginx/ build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
