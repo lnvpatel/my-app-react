@@ -10,7 +10,7 @@ pipeline {
         AWS_REGION = 'ap-south-1'
         S3_BUCKET_NAME = 'oriservereact'
         LOCAL_FILE_PATH = "${WORKSPACE}/build.zip" // Path to the local build artifact
-        S3_FILE_PATH = '/build.zip' // Path in S3 bucket
+        S3_FILE_PATH = 'build.zip' // Path in S3 bucket
     }
     stages {
         stage('Install Yarn') {
