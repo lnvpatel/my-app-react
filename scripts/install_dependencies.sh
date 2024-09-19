@@ -9,7 +9,7 @@ fi
 #!/bin/bash
 
 # Path to deployment root (contains directories named by deployment group ID)
-deployment_root="/path/to/deployment-root"  # Update this path
+deployment_root="/opt/codedeploy-agent/deployment-root"  # Update this path
 
 # Temporary directory for the current deployment
 tmp_dir="/tmp/deployment-emp"
