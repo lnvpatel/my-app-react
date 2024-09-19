@@ -56,7 +56,8 @@ pipeline {
                 script {
                     // Create the zip file of the build directory
                     sh'''
-                         cd build && zip -r ../build.zip ./*
+                         cd /var/lib/jenkins/workspace/my-app-react/build
+                         zip -r ../build.zip ./*
                       '''
                 }
             }
