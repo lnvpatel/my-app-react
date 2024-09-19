@@ -44,8 +44,4 @@ ls -la
 
 # Install dependencies
 echo "Installing project dependencies..."
-yarn install
-
-# Build the React application
-echo "Building the React application..."
-yarn run build
+yarn install --production
