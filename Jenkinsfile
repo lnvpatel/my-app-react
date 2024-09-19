@@ -24,10 +24,7 @@ pipeline {
         stage('Clean Up') {
             steps {
                 script {
-                    sh 'yarn cache clean'
-                    sh 'rm -rf node_modules'
-                    sh 'rm -rf yarn.lock'
-                    sh 'rm -rf build'
+                    sh 'rm -rf my-app-react"
                 }
             }
         }
