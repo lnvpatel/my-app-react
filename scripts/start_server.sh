@@ -16,4 +16,3 @@ else
     echo "Failed to start Nginx."
     exit 1
 fi
-#line added

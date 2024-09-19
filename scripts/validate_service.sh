@@ -26,4 +26,3 @@ done
 
 echo "Nginx failed to serve the application after $RETRIES attempts."
 exit 1
-#line addded

@@ -10,4 +10,3 @@ else
     echo "Failed to reload Nginx. Restarting Nginx instead."
     systemctl restart nginx
 fi
-#line added
